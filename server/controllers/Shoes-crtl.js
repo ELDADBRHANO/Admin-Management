@@ -1,6 +1,6 @@
 const shoes = require('../models/Shoes');
 
-const getShoes = async()=>{
+const getShoes = async(req,res)=>{
   await shoes.find({})
   .then((data,err)=>{
     if(err){

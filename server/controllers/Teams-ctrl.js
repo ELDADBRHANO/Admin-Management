@@ -1,6 +1,6 @@
 const teams = require("../models/Teams");
 
-const getTeams = async () => {
+const getTeams = async (req,res) => {
   await teams
     .find({})
     .then((data, err) => {

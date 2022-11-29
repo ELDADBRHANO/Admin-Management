@@ -1,11 +1,9 @@
 const equipment = require("../models/SportEquipment");
 
-const getEquipment = async () => {
-  await equipment
-    .find({})
-    .then((data, err) => {
+const getEquipment = async (req,res) => {
+  await equipment.find({}).then((data, err) => {
       if (err) {
-        return res.status(200).json({ success: false, error: err });
+        return res.status(400).json({ success: false, error: err });
       }
       if (data.length == 0) {
         return res

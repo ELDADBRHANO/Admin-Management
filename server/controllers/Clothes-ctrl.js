@@ -8,7 +8,7 @@ const getClothes = async (req, res) => {
     }
     if (data.length == 0) {
       return res
-        .status(401)
+        .status(400)
         .json({ success: false, message: "No Clothes available" });
     }
     res.status(200).json({ success: true, data: data });
