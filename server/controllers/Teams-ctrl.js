@@ -63,6 +63,7 @@ const getTeamsById= async (req,res)=>{
     if(err) res.status(400).json({success:false, error:err})
   })
 }
+
 module.exports = {
   createTeams,
   getTeams,
