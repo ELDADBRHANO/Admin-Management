@@ -39,8 +39,33 @@ const createEquipment = async (req, res) => {
       res.status(400).json({ success: false, error: err });
     });
 };
+const getEquipmentById= async (req,res)=>{
+  await equipment.findById(req.params.id)
+  .then((data)=>{
+    if(!data){
+      return res.json({success:false, message:'No equipment found!'})
+    }
+    return res.status(200).json({success:true, data:data})
+  })
+  .catch(err=>{
+    if(err) res.status(400).json({success:false, error:err})
+  })
+}
+const updateEquipment = async (req,res)=>{
+  await equipment.findByIdAndUpdate(req.params.id, req.body)
+  .then(result=>res.status(200).json({success:true, result}))
+  .catch(err=>res.status(400).json({success:false, error:err}))
+}
 
+const deleteEquipment=async (req,res)=>{
+  await equipment.findByIdAndDelete(req.params.id)
+  .then(()=>res.status(200).json({success:true, message:'Delete successfully'}))
+  .catch(err=>res.status(401).json({success:false, error:err}))
+}
 module.exports = {
   createEquipment,
   getEquipment,
+  updateEquipment,
+  deleteEquipment,
+  getEquipmentById
 };

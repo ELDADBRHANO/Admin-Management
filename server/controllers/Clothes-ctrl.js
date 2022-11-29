@@ -29,6 +29,8 @@ const getClothesById= async (req,res)=>{
   })
 }
 
+
+
 const updateClothe = async (req,res)=>{
   await clothes.findByIdAndUpdate(req.params.id, req.body)
   .then(result=>res.status(200).json({success:true, result}))
@@ -52,7 +54,7 @@ const createClothes = async(req,res)=>{
 
 const deleteClothe=async (req,res)=>{
   await clothes.findByIdAndDelete(req.params.id)
-  .then(()=>res.status(200).json({success:true}))
+  .then(()=>res.status(200).json({success:true, message:'Delete successfully'}))
   .catch(err=>res.status(401).json({success:false, error:err}))
 }
 

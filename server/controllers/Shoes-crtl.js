@@ -16,7 +16,18 @@ const getShoes = async()=>{
   })
 }
 
-
+const findShoesById =async (req,res)=>{
+  await shoes.findById(req.params.id)
+  .then((data)=>{
+    if(!data){
+      return res.json({success:false,message:'No shoes available at the moment.'})
+    }
+    return res.status(200).json({success:true, data:data})
+  })
+  .catch((err)=>{
+    res.status(401).json({success:false, error:err})
+  })
+}
 const createShoes = async (req, res) => {
   await shoes.insertMany(req.body.flight)
   .then((shoe)=>{
@@ -31,7 +42,21 @@ const createShoes = async (req, res) => {
 
 };
 
+const updateClothes =async (req,res)=>{
+  await shoes.findByIdAndUpdate(req.params.id, req.body)
+  .then(clothe=>{res.status(200).json({success:true, clothe})})
+  .catch(err=>res.status(400).json({success:false, error:err}))
+}
+
+const deleteShoes = async(req,res)=>{
+  await shoes.findByIdAndDelete(req.params.id)
+  .then(()=>{res.status(200).json({success:true, message:"Deleted successfully."})})
+  .catch(err=>{res.status(400).json({success:false, error:err})})
+}
 module.exports = {
   createShoes,
-  getShoes
+  getShoes,
+  findShoesById,
+  updateClothes,
+  deleteShoes
 }

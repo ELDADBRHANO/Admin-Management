@@ -40,7 +40,33 @@ const createTeams = async (req, res) => {
     });
 };
 
+const deleteTeams=async (req,res)=>{
+  await teams.findByIdAndDelete(req.params.id)
+  .then(()=>res.status(200).json({success:true, message:'Delete successfully'}))
+  .catch(err=>res.status(401).json({success:false, error:err}))
+}
+const updateTeam = async (req,res)=>{
+  await teams.findByIdAndUpdate(req.params.id, req.body)
+  .then(result=>res.status(200).json({success:true, result}))
+  .catch(err=>res.status(400).json({success:false, error:err}))
+}
+
+const getTeamsById= async (req,res)=>{
+  await teams.findById(req.params.id)
+  .then((data)=>{
+    if(!data){
+      return res.json({success:false, message:'No teams found!'})
+    }
+    return res.status(200).json({success:true, data:data})
+  })
+  .catch(err=>{
+    if(err) res.status(400).json({success:false, error:err})
+  })
+}
 module.exports = {
   createTeams,
-  getTeams
+  getTeams,
+  deleteTeams,
+  updateTeam,
+  getTeamsById
 };
