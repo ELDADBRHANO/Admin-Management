@@ -1,7 +1,7 @@
-const teams = require("../models/Teams");
+const categories = require("../models/categories");
 
-const getTeams = async (req,res) => {
-  await teams
+const getCategories = async (req,res) => {
+  await categories
     .find({})
     .then((data, err) => {
       if (err) {
@@ -12,7 +12,7 @@ const getTeams = async (req,res) => {
           .status(400)
           .json({
             success: false,
-            message: "There is no teams to view at this Time.",
+            message: "There is no categories to view at this Time.",
           });
       }
       res.status(200).json({ success: true, data: data });
@@ -22,9 +22,9 @@ const getTeams = async (req,res) => {
     });
 };
 
-const createTeams = async (req, res) => {
-  await teams
-    .insertMany(req.body.teams)
+const createCategories = async (req, res) => {
+  await categories
+    .insertMany(req.body.categories)
     .then((equipment) => {
       if (equipment.length == 0) {
         return res
@@ -33,29 +33,29 @@ const createTeams = async (req, res) => {
       }
       return res
         .status(300)
-        .json({ success: true, message: "teams added successfully." });
+        .json({ success: true, message: "categories added successfully." });
     })
     .catch((err) => {
       res.status(400).json({ success: false, error: err });
     });
 };
 
-const deleteTeams=async (req,res)=>{
-  await teams.findByIdAndDelete(req.params.id)
+const deleteCategories=async (req,res)=>{
+  await categories.findByIdAndDelete(req.params.id)
   .then(()=>res.status(200).json({success:true, message:'Delete successfully'}))
   .catch(err=>res.status(401).json({success:false, error:err}))
 }
-const updateTeam = async (req,res)=>{
-  await teams.findByIdAndUpdate(req.params.id, req.body)
+const updateCategory = async (req,res)=>{
+  await categories.findByIdAndUpdate(req.params.id, req.body)
   .then(result=>res.status(200).json({success:true, result}))
   .catch(err=>res.status(400).json({success:false, error:err}))
 }
 
-const getTeamsById= async (req,res)=>{
-  await teams.findById(req.params.id)
+const getCategoryById= async (req,res)=>{
+  await categories.findById(req.params.id)
   .then((data)=>{
     if(!data){
-      return res.json({success:false, message:'No teams found!'})
+      return res.json({success:false, message:'No categories found!'})
     }
     return res.status(200).json({success:true, data:data})
   })
@@ -65,9 +65,9 @@ const getTeamsById= async (req,res)=>{
 }
 
 module.exports = {
-  createTeams,
-  getTeams,
-  deleteTeams,
-  updateTeam,
-  getTeamsById
+  createCategories,
+  getCategories,
+  deleteCategories,
+  updateCategory,
+  getCategoryById
 };

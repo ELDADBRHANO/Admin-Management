@@ -29,7 +29,7 @@ const findShoesById =async (req,res)=>{
   })
 }
 const createShoes = async (req, res) => {
-  await shoes.insertMany(req.body.flight)
+  await shoes.insertMany(req.body.shoe)
   .then((shoe)=>{
     if(shoe.length==0){
       return res.status(400).json({success:false, message:"Cant send empty fields!"})

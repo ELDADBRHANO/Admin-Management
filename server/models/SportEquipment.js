@@ -7,7 +7,7 @@ const sportEquipmentSchema = new mongoose.Schema({
   brand:{type:String,required:true},
   price:{type:Number,required:true},
   quantity:{type:Number,required:true},
-  teamsId:Number,
+  sales:{type:Number,required:true},
   link:{type:String,required:true}
 })
 

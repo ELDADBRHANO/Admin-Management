@@ -2,21 +2,25 @@ const dotEnv =require('dotenv');
 dotEnv.config()
 const express = require('express');
 const cors = require('cors');
-const clothesRouter = require('./routes/clothes-route')
+const storeRouter = require('./routes/store')
 const shoesRouter = require('./routes/shoes-router')
 const sportEquipmentRouter = require('./routes/sportEquipment-router')
 const teamsRouter = require('./routes/teams-router')
+const usersRouter = require('./routes/user')
+const passport = require('passport');
+require('./config/passport')(passport);
 const db = require('./DB')
 const app = express();
 const port = 5000
 app.use(cors());
+app.use(passport.initialize())
 app.use(express.json({extended:true}));
 app.use(express.urlencoded({extended:true}));
-app.use('/clothes',clothesRouter)
+app.use('/store',passport.authenticate('jwt', { session: false }),storeRouter)
 app.use('/shoes',shoesRouter)
 app.use('/sportEquipment',sportEquipmentRouter)
 app.use('/teams',teamsRouter)
-
+app.use('/users',usersRouter);
 app.get('/',(req,res)=>{
   res.send({message:"success"});
 })

@@ -3,7 +3,7 @@ const {  createTeams,
   getTeams,
   deleteTeams,
   updateTeam,
-  getTeamsById} = require('../controllers/Teams-ctrl')
+  getTeamsById} = require('../controllers/categories')
 router.get('/',getTeams)
 router.get('/getTeamsById/:id',getTeamsById)
 router.post('/createTeams',createTeams)
