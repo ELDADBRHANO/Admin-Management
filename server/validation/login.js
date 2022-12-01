@@ -1,7 +1,7 @@
 const validator = require('validator');
 const isEmpty = require('is-empty');
 
-module.exports = validateLogin = (user) => {
+const validateLogin = (user) => {
     errors = {};
     user.email = isEmpty(user.email) ? "" : user.email;
     user.password = isEmpty(user.password) ? "" : user.password;
@@ -14,3 +14,5 @@ module.exports = validateLogin = (user) => {
         isValid: isEmpty(errors)
     }
 }
+
+module.exports =validateLogin;

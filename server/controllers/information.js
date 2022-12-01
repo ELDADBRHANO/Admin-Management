@@ -1,7 +1,7 @@
-const equipment = require("../models/SportEquipment");
+const information = require("../models/information");
 
-const getEquipment = async (req,res) => {
-  await equipment.find({}).then((data, err) => {
+const getInformation = async (req,res) => {
+  await information.find({}).then((data, err) => {
       if (err) {
         return res.status(400).json({ success: false, error: err });
       }
@@ -10,7 +10,7 @@ const getEquipment = async (req,res) => {
           .status(400)
           .json({
             success: false,
-            message: "There is no equipment to view at this Time.",
+            message: "There is no information to view at this Time.",
           });
       }
       res.status(200).json({ success: true, data: data });
@@ -20,28 +20,28 @@ const getEquipment = async (req,res) => {
     });
 };
 
-const createEquipment = async (req, res) => {
-  await equipment
-    .insertMany(req.body.equipment)
-    .then((equipment) => {
-      if (equipment.length == 0) {
+const createInformation = async (req, res) => {
+  await information
+    .insertMany(req.body.information)
+    .then((information) => {
+      if (information.length == 0) {
         return res
           .status(400)
           .json({ success: false, message: "Cant send empty fields!" });
       }
       return res
         .status(300)
-        .json({ success: true, message: "equipment added successfully." });
+        .json({ success: true, message: "information added successfully." });
     })
     .catch((err) => {
       res.status(400).json({ success: false, error: err });
     });
 };
-const getEquipmentById= async (req,res)=>{
-  await equipment.findById(req.params.id)
+const getInformationById= async (req,res)=>{
+  await information.findById(req.params.id)
   .then((data)=>{
     if(!data){
-      return res.json({success:false, message:'No equipment found!'})
+      return res.json({success:false, message:'No information found!'})
     }
     return res.status(200).json({success:true, data:data})
   })
@@ -49,21 +49,21 @@ const getEquipmentById= async (req,res)=>{
     if(err) res.status(400).json({success:false, error:err})
   })
 }
-const updateEquipment = async (req,res)=>{
-  await equipment.findByIdAndUpdate(req.params.id, req.body)
+const updateInformation = async (req,res)=>{
+  await information.findByIdAndUpdate(req.params.id, req.body)
   .then(result=>res.status(200).json({success:true, result}))
   .catch(err=>res.status(400).json({success:false, error:err}))
 }
 
-const deleteEquipment=async (req,res)=>{
-  await equipment.findByIdAndDelete(req.params.id)
+const deleteInformation=async (req,res)=>{
+  await information.findByIdAndDelete(req.params.id)
   .then(()=>res.status(200).json({success:true, message:'Delete successfully'}))
   .catch(err=>res.status(401).json({success:false, error:err}))
 }
 module.exports = {
-  createEquipment,
-  getEquipment,
-  updateEquipment,
-  deleteEquipment,
-  getEquipmentById
+  createInformation,
+  getInformation,
+  updateInformation,
+  deleteInformation,
+  getInformationById
 };

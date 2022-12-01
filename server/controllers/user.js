@@ -6,7 +6,8 @@ const validateLogin = require('../validation/login');
 const key = process.env.SECRET_KEY;
 
 const register = async (req, res) => {
-    const { isValid, errors } = validateRegister(req.body.user);
+    const user = req.body.user
+    const { isValid, errors } = validateRegister({user});
     if (!isValid) return res.status(400).json(errors)
      userModel.findOne({email: req.body.user.email}, (err, user) => {
         if (err) return res.status(400).json(err)

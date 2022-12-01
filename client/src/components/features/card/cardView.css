@@ -1,0 +1,8 @@
+.divs{
+  display: flex;
+  column-gap: 10vh;
+}
+
+.col{
+  background-color: white;
+}

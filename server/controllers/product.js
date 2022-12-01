@@ -1,17 +1,12 @@
-const categories = require("../models/categories");
+const products = require("../models/products");
 
 
-const getDocumentsNumber=async (req,res)=>{
- await categories.countDocuments({}).then(res=>
-     res
-  )
-  .catch(err=> res.status(400).json({success:false}))
-}
 
 
-const getCategories = async (req,res) => {
-  const countFunc = getDocumentsNumber()
-  await categories
+
+const getProducts = async (req,res) => {
+
+  await products
     .find({})
     .then((data, err) => {
       if (err) {
@@ -22,19 +17,19 @@ const getCategories = async (req,res) => {
           .status(400)
           .json({
             success: false,
-            message: "There is no categories to view at this Time.",
+            message: "There is no products to view at this Time.",
           });
       }
-      res.status(200).json({ success: true, data: data, count:countFunc });
+      res.status(200).json({ success: true, data: data });
     })
     .catch((err) => {
       if (err) res.status(400).json({ success: false, error: err });
     });
 };
 
-const createCategories = async (req, res) => {
-  await categories
-    .insertMany(req.body.categories)
+const createProducts = async (req, res) => {
+  await products
+    .insertMany(req.body.products)
     .then((equipment) => {
       if (equipment.length == 0) {
         return res
@@ -43,29 +38,29 @@ const createCategories = async (req, res) => {
       }
       return res
         .status(300)
-        .json({ success: true, message: "categories added successfully." });
+        .json({ success: true, message: "products added successfully." });
     })
     .catch((err) => {
       res.status(400).json({ success: false, error: err });
     });
 };
 
-const deleteCategories=async (req,res)=>{
-  await categories.findByIdAndDelete(req.params.id)
+const deleteProducts=async (req,res)=>{
+  await products.findByIdAndDelete(req.params.id)
   .then(()=>res.status(200).json({success:true, message:'Delete successfully'}))
   .catch(err=>res.status(401).json({success:false, error:err}))
 }
-const updateCategory = async (req,res)=>{
-  await categories.findByIdAndUpdate(req.params.id, req.body)
+const updateProduct = async (req,res)=>{
+  await products.findByIdAndUpdate(req.params.id, req.body)
   .then(result=>res.status(200).json({success:true, result}))
   .catch(err=>res.status(400).json({success:false, error:err}))
 }
 
-const getCategoryById= async (req,res)=>{
-  await categories.findById(req.params.id)
+const getProductById= async (req,res)=>{
+  await products.findById(req.params.id)
   .then((data)=>{
     if(!data){
-      return res.json({success:false, message:'No categories found!'})
+      return res.json({success:false, message:'No products found!'})
     }
     return res.status(200).json({success:true, data:data})
   })
@@ -75,10 +70,9 @@ const getCategoryById= async (req,res)=>{
 }
 
 module.exports = {
-  createCategories,
-  
-  getCategories,
-  deleteCategories,
-  updateCategory,
-  getCategoryById
+  createProducts,
+  getProducts,
+  deleteProducts,
+  updateProduct,
+  getProductById
 };
