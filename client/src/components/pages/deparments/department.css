@@ -1,0 +1,18 @@
+
+/* #number{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 49px;
+  height: 37px;
+} */
+
+.department {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+#number{
+  border-right: solid black 1px;
+}

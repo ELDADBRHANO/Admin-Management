@@ -1,14 +1,20 @@
 import React, { useContext } from "react";
 import Container from "react-bootstrap/esm/Container";
 import { departmentContext } from "../../../context/departments";
-import CardTemplate from "../../features/card/card";
+import './department.css';
+import { AiOutlineUnorderedList } from "react-icons/ai";
 const Departments = () => {
   const { department, setDepartment} = useContext(departmentContext);
   const departmentLength = department.length;
   return (
     <Container>
-      <h3>Department</h3>
-      <h3>{departmentLength}</h3>
+      
+      <div className="department container-fluid">
+        <div className="iconAndNumber pt-3 d-flex">
+      <h3 id="number" className="text-center">{departmentLength }</h3>
+      <AiOutlineUnorderedList size={30}/>
+        </div>
+      </div>
     </Container>
   );
 };

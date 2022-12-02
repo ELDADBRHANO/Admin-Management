@@ -7,49 +7,39 @@ import './cardView.css'
 import Container from 'react-bootstrap/Container';
 const CardView = () => {
   return (
-    <Container fluid>
-    <div class="divs row d-flex">
-      <div class="col">
-        <Departments/>
+    <div className="container-fluid divs-container text-center mt-5">
+      <div>
+      Departments
+        <div className="view">
+          <Departments/>
+        </div>
       </div>
-      <div class="col">
-        <Categories/>
+      <div>
+      Categories
+        <div className="view">
+          <Categories/>
+        </div>
       </div>
-      <div class="col">
-       <Information/>
+      <div>
+      Information
+        <div className="view">
+          <Information/>
+        </div>
       </div>
-
-      <div class="col">
-        <Store/>
+      <div>
+      Stores
+        <div className="view">
+          <Store/>
+        </div>
       </div>
-
-      <div class="col">
-        <Product/>
+      <div>
+      Products
+        <div className="view">
+          <Product/>
+        </div>
       </div>
-
+      
     </div>
-  </Container>
   );
 };
 export default CardView;
-// import Button from "react-bootstrap/Button";
-// import Card from "react-bootstrap/Card";
-
-// const CardTemplate = ({ category }) => {
-//   console.log(category);
-//   category ? console.log(category) : console.log(category);
-
-//   return (
-//     <Card style={{ width: "18rem" }}>
-//       <Card.Body>
-//         <Card.Title>{category?.categoryName}</Card.Title>
-//         <Card.Text>
-//           {category?.categoryName}
-//         </Card.Text>
-//         <Button variant="primary">Go somewhere</Button>
-//       </Card.Body>
-//     </Card>
-//   );
-// };
-
-// export default CardTemplate;

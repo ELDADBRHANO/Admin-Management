@@ -6,8 +6,8 @@ const Orders = () => {
   const ordersLength = orders.length;
   return (
     <Container>
-      <h3>Orders</h3>
-      <h3>{ordersLength}</h3>
+      <h5 className="text-center">Orders</h5>
+      <h3 id="number" className="text-center">{ordersLength}</h3>
     </Container>
   );
 };
