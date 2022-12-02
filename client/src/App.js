@@ -11,11 +11,15 @@ import Orders from './components/pages/orders/orders';
 import Product from './components/pages/products/products'
 import CardView from './components/features/card/card';
 import Header from './components/features/haeder/header';
+import Graf from './components/features/graf/graf';
+import BarChart from './components/features/barChrt/barchrt';
 function App() {
   return (
     <div>
       <Header/>
       <CardView/>
+      <Graf/>
+      {/* <BarChart/> */}
       {/* <Categories/>
       <Departments/>
       <Information/>

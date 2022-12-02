@@ -20,7 +20,7 @@ const getOrders = async (req,res) => {
             message: "There is no orders to view at this Time.",
           });
       }
-      res.status(200).json({ success: true, data: data });
+      res.status(200).json(data);
     })
     .catch((err) => {
       if (err) res.status(400).json({ success: false, error: err });

@@ -6,7 +6,7 @@ export const ordersContext = createContext();
 function OrdersProvider({ children }) {
   const [orders, setOrders] = useState([]);
   useEffect(() => {
-    getOrders().then((res) => setOrders(res.data));
+    getOrders().then((res) => setOrders(res));
   }, []);
   return (
     <ordersContext.Provider value={{ orders, setOrders}}>
