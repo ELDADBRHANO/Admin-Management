@@ -1,59 +1,80 @@
-import React from 'react'
-import {Chart as ChartJS,LinearScale, CategoryScale,BarElement,Title,Tooltip,Legend} from 'chart.js';
-import {Bar} from 'react-chartjs-2';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { useContext } from 'react';
-import { ordersContext } from '../../../context/orders';
+import {
+  Chart as ChartJS,
+  LinearScale,
+  CategoryScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { Bar } from "react-chartjs-2";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useContext } from "react";
+import { ordersContext } from "../../../context/orders";
+
+import Container from 'react-bootstrap/Container';
+import "./graf.css";
 ChartJS.register(
-  LinearScale, CategoryScale,BarElement,Title,Tooltip,Legend
-)
+  LinearScale,
+  CategoryScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
+
 function Graf() {
-  const {orders, setOrders}=useContext(ordersContext);
-  const [chartData, setCharData]= useState({
-    datasets:[],
-    
-  })
+  const { orders, setOrders } = useContext(ordersContext);
+  const data = orders.map((item) => item.ETD);
+  const ordersNum = orders.map((item) => item.productsNumbers);
+  if (orders === "undefined" || {} || []);
+  console.log("orders:", orders);
+  const [chartData, setCharData] = useState({
+    labels: [],
+    datasets: [],
+  });
+
+  const [chartOptions, setChartOptions] = useState({});
   
-  const [chartOptions, setChartOptions] = useState({})
-  
-  useEffect(()=>{
+
+  useEffect(() => {
     setCharData({
-      labels: Array.from(orders).map(data=>data?.ETD),
-      datasets:[
+      labels: data,
+      datasets: [
         {
-          label:"Reservations within the last 7 days",
-          data:Array.from(orders).map(data=>data?.price),
-          borderColor:"rgb(53,162,235)",
-          backgroundColor:"rgba(53,162,235,0.4)"
-        }
-      ]
+          type: "line",
+          label: "Reservations within the last 7 days",
+          data: ordersNum,
+          borderColor: "rgb(53,162,235)",
+          backgroundColor: "rgba(53,162,235,0.4)",
+        },
+      ],
     });
-    
+
     setChartOptions({
-      responsive:false,
-      config:{
-        type:"line"
-      },
-      plugins:{
-        length:{
-          legend:{
-            position:"top"
+      responsive: true,
+      plugins: {
+        length: {
+          legend: {
+            position: "top",
           },
-          title:{
-            display:true,
-            text:"dcx"
-          }
-        }
-      }
-    })
-  },[])
-  console.log(chartData);
+          title: {
+            display: true,
+            text: "dcx",
+          },
+        },
+      },
+    });
+  }, []);
+  if (!chartData === "undefined" || {} || [] || chartData.datasets === {});
   return (
-    <div>
-      <Bar width={1900} height={2000} data={chartData} options={chartOptions} />
-    </div>
-  )
+    <Container>
+      <div className="chart-container">
+        <Bar height={40} data={chartData} options={chartOptions} />
+      </div>
+    </Container>
+  );
 }
 
-export default Graf
+export default Graf;
