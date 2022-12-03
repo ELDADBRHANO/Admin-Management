@@ -1,0 +1,37 @@
+.tableOrders{
+  width: 100%;
+  /* height: 45vh; */
+  /* background-color: white; */
+  /* padding: 1rem; */
+}
+.round{
+  background-color: white;
+  border: 50px solid;
+  border-color: blue;
+  border-radius: 75%
+  ;
+}
+.states-container{
+  display: grid;
+  width:95%;
+  grid-template-columns: 20% 20% 60%;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.ordersUsers{
+  background-color: white;
+  height: 31vh;
+}
+
+
+
+
+@media screen and (max-width:600px){
+  .states-container{
+
+    grid-template-columns: 100%;
+
+  }
+}
