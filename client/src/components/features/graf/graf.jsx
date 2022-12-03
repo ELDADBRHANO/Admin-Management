@@ -6,6 +6,7 @@ import {
   Title,
   Tooltip,
   Legend,
+  Colors
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import { useState } from "react";
@@ -19,6 +20,7 @@ ChartJS.register(
   LinearScale,
   CategoryScale,
   BarElement,
+  Colors,
   Title,
   Tooltip,
   Legend
@@ -26,36 +28,32 @@ ChartJS.register(
 
 function Graf() {
   const { orders, setOrders } = useContext(ordersContext);
-  const data = orders.map((item) => item.ETD);
-  const ordersNum = orders.map((item) => item.productsNumbers);
-  if (orders === "undefined" || {} || []);
-  console.log("orders:", orders);
+  if (orders === "undefined" || {} || [])  console.log("un");;
   const [chartData, setCharData] = useState({
-    labels: [],
     datasets: [],
   });
-
+  
   const [chartOptions, setChartOptions] = useState({});
   
-
+  
   useEffect(() => {
-    if(orders){
-
+      
       setCharData({
-        labels: data,
+        labels: orders?.map((item) => item?.ETD),
         datasets: [
           {
             type: "line",
             label: "Reservations within the last 7 days",
-            data: ordersNum,
+            data:orders.map((item) => item?.productsNumbers),
             borderColor: "rgb(53,162,235)",
             backgroundColor: "rgba(53,162,235,0.4)",
           },
         ],
       });
-  
+      
       setChartOptions({
         responsive: true,
+
         plugins: {
           length: {
             legend: {
@@ -65,16 +63,17 @@ function Graf() {
               display: true,
               text: "dcx",
             },
+            
           },
         },
       });
-    }
-  }, []);
-  if (!chartData );
+  }, [orders]);
+  
+  if( !orders) return console.log("orders un");
   return (
-    <Container fluid>
+    <Container className="d-flex justify-content-center" id="cont" fluid>
       <div className="chart-container">
-        <Bar height={40} data={chartData} options={chartOptions} />
+        <Bar id="chart" height={60} data={chartData} options={chartOptions} />
       </div>
     </Container>
   );

@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const validateRegister = require('../validation/register');
 const validateLogin = require('../validation/login');
+const UserModal = require('../models/user');
 const key = process.env.SECRET_KEY;
 
 const register = async (req, res) => {
@@ -57,7 +58,31 @@ const login = async (req, res) => {
             });
         });
 }
+
+
+const getUsers= async(req,res)=>{
+    await UserModal
+    .find({})
+    .then((data, err) => {
+      if (err) {
+        return res.status(200).json({ success: false, error: err });
+      }
+      if (data.length == 0) {
+        return res
+          .status(400)
+          .json({
+            success: false,
+            message: "There is no products to view at this Time.",
+          });
+      }
+      res.status(200).json({ success: true, data: data });
+    })
+    .catch((err) => {
+      if (err) res.status(400).json({ success: false, error: err });
+    });
+};
 module.exports = {
     register,
-    login
+    login,
+    getUsers
 }
