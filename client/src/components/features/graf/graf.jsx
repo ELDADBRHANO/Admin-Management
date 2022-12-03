@@ -39,37 +39,40 @@ function Graf() {
   
 
   useEffect(() => {
-    setCharData({
-      labels: data,
-      datasets: [
-        {
-          type: "line",
-          label: "Reservations within the last 7 days",
-          data: ordersNum,
-          borderColor: "rgb(53,162,235)",
-          backgroundColor: "rgba(53,162,235,0.4)",
-        },
-      ],
-    });
+    if(orders){
 
-    setChartOptions({
-      responsive: true,
-      plugins: {
-        length: {
-          legend: {
-            position: "top",
+      setCharData({
+        labels: data,
+        datasets: [
+          {
+            type: "line",
+            label: "Reservations within the last 7 days",
+            data: ordersNum,
+            borderColor: "rgb(53,162,235)",
+            backgroundColor: "rgba(53,162,235,0.4)",
           },
-          title: {
-            display: true,
-            text: "dcx",
+        ],
+      });
+  
+      setChartOptions({
+        responsive: true,
+        plugins: {
+          length: {
+            legend: {
+              position: "top",
+            },
+            title: {
+              display: true,
+              text: "dcx",
+            },
           },
         },
-      },
-    });
+      });
+    }
   }, []);
-  if (!chartData === "undefined" || {} || [] || chartData.datasets === {});
+  if (!chartData );
   return (
-    <Container>
+    <Container fluid>
       <div className="chart-container">
         <Bar height={40} data={chartData} options={chartOptions} />
       </div>
