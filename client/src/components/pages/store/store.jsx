@@ -4,7 +4,7 @@ import { storeContext } from "../../../context/store";
 import './store.css'
 import { BiStore } from "react-icons/bi";
 const Store = () => {
-  const { store, setStore} = useContext(storeContext);
+  const { store} = useContext(storeContext);
   const storeLength = store.length;
   return (
     <Container>

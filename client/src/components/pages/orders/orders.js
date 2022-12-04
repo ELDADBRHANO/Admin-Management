@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import Container from "react-bootstrap/esm/Container";
 import { ordersContext } from "../../../context/orders";
 const Orders = () => {
-  const { orders, setOrders} = useContext(ordersContext);
+  const { orders} = useContext(ordersContext);
   const ordersLength = orders.length;
   return (
     <Container>

@@ -4,7 +4,7 @@ import { informationContext } from "../../../context/information";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 
 const Information = () => {
-  const { information, setInformation} = useContext(informationContext);
+  const { information} = useContext(informationContext);
   const informationLength = information.length;
   return (
     <Container>

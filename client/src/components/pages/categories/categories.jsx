@@ -5,7 +5,7 @@ import CardTemplate from "../../features/card/card";
 import { BiCategoryAlt } from "react-icons/bi";
 
 const Categories = () => {
-  const { category, setCategory} = useContext(categoryContext);
+  const { category} = useContext(categoryContext);
   const categoryLength = category.length;
   return (
     <Container>

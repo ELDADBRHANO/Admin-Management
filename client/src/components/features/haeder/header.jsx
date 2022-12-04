@@ -1,13 +1,12 @@
 import React from "react";
-import Container from "react-bootstrap/esm/Container";
+import SideBar from "../sideBar/sideBar";
 import "./header.css";
-import { RxHamburgerMenu } from "react-icons/rx";
 
 function Header() {
   return (
     <div className="navbar-div">
       <nav id="nav_container" className="navbar navbar-expand-lg">
-        <img
+        <img 
           id="multiLogo"
           src="./images/multimarket.png"
           alt=""
@@ -18,12 +17,18 @@ function Header() {
       Dashboard 
       </p>
       <div id="div_burger">
-      <img id="burger_logo" src="./images/menu.png"/>
+        <SideBar/>
+      {/* <img id="burger_logo" alt="burger" src="./images/menu.png"/> */}
       </div>
         </div>
       </nav>
+      <div id="sidebar_div">
+
+      </div>
     </div>
   );
 }
 
 export default Header;
+
+

@@ -3,7 +3,7 @@ import Container from "react-bootstrap/esm/Container";
 import { productContext } from "../../../context//product";
 import { BsBasket } from "react-icons/bs";
 const   Product = () => {
-  const { product, setProduct} = useContext(productContext);
+  const { product} = useContext(productContext);
   const productLength = product.length;
   return (
     <Container>

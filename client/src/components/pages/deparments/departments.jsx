@@ -4,7 +4,7 @@ import { departmentContext } from "../../../context/departments";
 import './department.css';
 import { AiOutlineUnorderedList } from "react-icons/ai";
 const Departments = () => {
-  const { department, setDepartment} = useContext(departmentContext);
+  const { department} = useContext(departmentContext);
   const departmentLength = department.length;
   return (
     <Container>

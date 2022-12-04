@@ -43,6 +43,7 @@ function Graf() {
         datasets: [
           {
             type: "line",
+            tension:0.4,
             label: "Reservations within the last 7 days",
             data:orders.map((item) => item?.productsNumbers),
             borderColor: "rgb(53,162,235)",
