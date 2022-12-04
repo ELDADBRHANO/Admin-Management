@@ -18,6 +18,7 @@ function ThirtyDaysUsers() {
     <div className='days' >
       <div id='ordersDays'>
             <h2>{usersLength}</h2>
+            <span className='spanCircels text-center'>Out of 500</span>
       </div>
     </div>
   )

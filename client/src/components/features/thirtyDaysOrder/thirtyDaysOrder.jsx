@@ -9,6 +9,7 @@ function ThirtyDaysOrder() {
     <div className='days' >
       <div id='ordersDays'>
             <h2>{ordersLength}</h2>
+            <span className='spanCircels text-center'>Out Of 392</span>
       </div>
     </div>
   )
