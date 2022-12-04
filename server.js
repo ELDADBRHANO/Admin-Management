@@ -3,16 +3,16 @@ const express = require('express');
 const cors = require('cors');
 
 
-const storeRouter = require('./routes/store')
-const productRouter = require('./routes/products')
-const ordersRouter = require('./routes/orders')
-const departmentRouter = require('./routes/department')
-const informationRouter = require('./routes/information')
-const categoryRouter = require('./routes/category')
-const usersRouter = require('./routes/user')
+const storeRouter = require('./server/routes/store')
+const productRouter = require('./server/routes/products')
+const ordersRouter = require('./server/routes/orders')
+const departmentRouter = require('./server/routes/department')
+const informationRouter = require('./server/routes/information')
+const categoryRouter = require('./server/routes/category')
+const usersRouter = require('./server/routes/user')
 const passport = require('passport');
-require('./config/passport')(passport);
-const db = require('./DB')
+require('./server/config/passport')(passport);
+const db = require('./server/DB')
 
 
 const app = express();
