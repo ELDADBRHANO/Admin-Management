@@ -16,7 +16,7 @@ const db = require('./server/DB')
 
 const path = require('path');
 const app = express();
-
+const favicon = require('express-favicon');
 
 app.use(passport.initialize())
 app.use(cors());
@@ -32,9 +32,9 @@ app.use('/products',productRouter);
 
 
 
-app.get('/',(req,res)=>{
-  res.send({message:"success"});
-})
+// app.get('/',(req,res)=>{
+//   res.send({message:"success"});
+// })
 
 
 const PORT = process.env.PORT||5000;
@@ -43,11 +43,10 @@ app.listen(PORT,()=>{
   console.log(`app is up on port:${PORT}`);
 })
 
+app.use(express.static(path.join(__dirname, 'client', 'build')))
+
 app.use(favicon(__dirname + '/client/build/favicon.ico'));
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(__dirname + '/client/build'));
-  app.get('*', function (req, res) {
-    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+app.get('*', function (req, res) {
+    res.sendFile(path.join(__dirname, 'client','build', 'index.html'));
   });
-}
