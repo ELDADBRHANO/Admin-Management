@@ -1,12 +1,26 @@
 #multiLogo{
-  width: 5vw;
+  width: 10vw;
 }
 
 
 #nav_container{
   background-color: #282A3A;
+  display: flex;
+  justify-content: space-between;
 }
 
 .navbar-div{
   width: 100%;
 }
+
+#burger_logo{
+  width: 25px;
+  margin-right:1rem ;
+}
+
+#dashboard{
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
