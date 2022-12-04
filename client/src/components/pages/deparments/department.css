@@ -14,5 +14,6 @@
 }
 
 #number{
-  border-right: solid black 1px;
+  margin-left: 2%;
+  border-left: solid black 1px;
 }
