@@ -16,7 +16,6 @@ const db = require('./server/DB')
 
 
 const app = express();
-const port = 5000
 
 
 app.use(passport.initialize())
@@ -37,13 +36,15 @@ app.get('/',(req,res)=>{
   res.send({message:"success"});
 })
 
-app.listen(port,()=>{
-  console.log(`app is up on port:${port}`);
-})
 
 
 
 const PORT = process.env.PORT||5000;
+
+app.listen(port,()=>{
+  console.log(`app is up on port:${PORT}`);
+})
+
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(__dirname + '/build'));
