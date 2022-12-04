@@ -1,8 +1,8 @@
-
+import { baseurl } from "./categories"; 
 
 const getOrders = async()=>{
   try {
-    const data =  await fetch('http://localhost:5000/orders/');
+    const data =  await fetch(`${baseurl}orders`);
     const dataClean = data.json()
     return dataClean;
   

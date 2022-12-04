@@ -1,5 +1,7 @@
+import { baseurl } from "./categories";
+
 const register = async()=>{
-  await fetch('http://localhost:3000/users/register',{
+  await fetch(`${baseurl}users/register`,{
     method:"POST",
     body:JSON.stringify(),
     headers:{

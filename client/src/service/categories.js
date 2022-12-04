@@ -1,6 +1,8 @@
+export const baseurl ='https://admin-managment.onrender.com/'
+
 const getCategories = async()=>{
   try {
-    return await fetch('http://localhost:5000/categories').then(res=>res.json())
+    return await fetch(`${baseurl}categories`).then(res=>res.json())
   
   } catch (error) {
     console.log(error);

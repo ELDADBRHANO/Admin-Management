@@ -1,6 +1,7 @@
+import { baseurl } from "./categories";
 const getDepartments = async()=>{
   try {
-    return await fetch('http://localhost:5000/department/').then(res=>res.json())
+    return await fetch(`${baseurl}department`).then(res=>res.json())
   
   } catch (error) {
     console.log(error);
