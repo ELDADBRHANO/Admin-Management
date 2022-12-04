@@ -37,14 +37,13 @@ app.get('/',(req,res)=>{
 })
 
 
-
-
 const PORT = process.env.PORT||5000;
 
 app.listen(PORT,()=>{
   console.log(`app is up on port:${PORT}`);
 })
 
+app.use(favicon(__dirname + '/client/build/favicon.ico'));
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(__dirname + '/client/build'));
